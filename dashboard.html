@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>IskolarHub - Your Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body id="dashboard-page">
+    <nav>
+        <div class="logo">📚 ISKOLARIUM</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="forum.html">Forum</a>
+            <a href="messages.html">Messages</a>
+            <a href="login.html" id="loginNavLink">Login</a>
+            <span id="userWelcome" style="display:none;"></span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>📋 ISKOLARBOARD</h1>
+            <p>Track your scholarship applications and requirements</p>
+            <div id="scholarship-list" class="grid-container">
+                
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="summary-stats">
+            <div class="summary-card">
+                <div class="summary-number" id="totalSaved">0</div>
+                <div class="summary-label">Scholarships Saved</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="totalProgress">0%</div>
+                <div class="summary-label">Average Progress</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="totalCompleted">0</div>
+                <div class="summary-label">Requirements Done</div>
+            </div>
+        </div>
+
+        <!-- Tracked Scholarships List -->
+        <div id="trackedList"></div>
+
+        <!-- Empty State (shown when no scholarships saved) -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-icon">📭</div>
+            <h3>No Scholarships Saved Yet</h3>
+            <p>Browse scholarships and save the ones you're interested in.</p>
+            <a href="scholarships.html" class="btn-primary">Browse Scholarships →</a>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            checkLoginStatusOnPage();
+            loadDashboard();
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

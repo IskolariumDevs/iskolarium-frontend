@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>IskolarHub - Private Messages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body id="messages-page">
+    <nav>
+        <div class="logo">📚 ISKOLARIUM</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="forum.html">Forum</a>
+            <a href="messages.html" class="active">Messages</a>
+            <a href="login.html" id="loginNavLink">Login</a>
+            <span id="userWelcome" style="display:none;"></span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>💌 Private Messages</h1>
+            <p>Direct messages with fellow scholars</p>
+        </div>
+
+        <div class="messages-container">
+            <!-- Conversations Sidebar -->
+            <div class="conversations-sidebar">
+                <div class="conversations-header">
+                    <h3>Conversations</h3>
+                    <button onclick="newConversation()" class="new-msg-btn">+ New</button>
+                </div>
+                <div id="conversationsList" class="conversations-list">
+                    <!-- Conversations will appear here -->
+                </div>
+            </div>
+
+            <!-- Message Area -->
+            <div class="message-area">
+                <div id="noConversationSelected" class="no-conversation">
+                    <div class="empty-icon">💬</div>
+                    <h3>Select a conversation</h3>
+                    <p>Choose a conversation from the left to start messaging</p>
+                </div>
+                
+                <div id="conversationView" style="display: none;">
+                    <div class="conversation-header" id="conversationHeader">
+                        <h3 id="chatWithName">Loading...</h3>
+                    </div>
+                    
+                    <div id="messagesList" class="messages-list">
+                        <!-- Messages will appear here -->
+                    </div>
+                    
+                    <div class="message-input-area">
+                        <textarea id="messageInput" rows="2" placeholder="Type a message..." onkeypress="handleEnterKey(event)"></textarea>
+                        <div class="message-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="anonymousMessage"> Send anonymously
+                            </label>
+                            <button onclick="sendMessage()" class="send-btn">Send →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Conversation Modal -->
+    <div id="newConversationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Start New Conversation</h3>
+                <button onclick="closeModal()" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label>Search for user:</label>
+                <input type="text" id="searchUser" placeholder="Enter username or email" onkeyup="searchUsers()">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let currentConversationId = null;
+        
+        window.onload = function() {
+            checkLoginStatusOnPage();
+            loadConversations();
+        }
+        
+        function handleEnterKey(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        function newConversation() {
+            if (!checkAuthAndRedirect()) return;
+            document.getElementById('newConversationModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('newConversationModal').style.display = 'none';
+        }
+        
+        function searchUsers() {
+            const query = document.getElementById('searchUser').value;
+            if (query.length < 2) {
+                document.getElementById('searchResults').innerHTML = '';
+                return;
+            }
+            
+            // Mock user search results
+            const mockUsers = [
+                { id: 2, name: "Maria Santos", email: "maria@up.edu.ph" },
+                { id: 3, name: "John Reyes", email: "john@dlsu.edu.ph" },
+                { id: 4, name: "Anna Cruz", email: "anna@ust.edu.ph" }
+            ];
+            
+            const filtered = mockUsers.filter(u => 
+                u.name.toLowerCase().includes(query.toLowerCase()) ||
+                u.email.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            document.getElementById('searchResults').innerHTML = filtered.map(user => `
+                <div class="search-result-item" onclick="startConversation(${user.id}, '${user.name}')">
+                    <strong>${user.name}</strong>
+                    <small>${user.email}</small>
+                </div>
+            `).join('');
+        }
+        
+        function startConversation(userId, userName) {
+            alert(`Starting conversation with ${userName}`);
+            closeModal();
+            // In real app, this would create a conversation via backend
+        }
+        
+        function checkAuthAndRedirect() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Please login to send messages');
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

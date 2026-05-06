@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IskolarHub - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body id="register-page">
+    <nav>
+        <div class="logo">📚 ISKOLARIUM</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="scholarships.html">Scholarships</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="forum.html">Forum</a>
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+
+    <div class="container">
+    <div class="card">
+        <h2>Create Account</h2>
+    
+        <form id="registrationForm">
+            <input type="text" id="regName" placeholder="Full Name" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <input type="number" id="regGwa" step="0.01" placeholder="GWA">
+            <input type="text" id="regUniversity" placeholder="University">
+            <input type="text" id="regCity" placeholder="Municipality" required>
+            <input type="text" id="regProgram" placeholder="Program">
+            <input type="text" id="regIncome" placeholder="Monthly Income" required>
+            
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div id="registerMessage"></div>
+</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

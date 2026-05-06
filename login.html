@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IskolarHub - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body id="login-page">
+    <nav>
+        <div class="logo">📚 ISKOLARHUB</div>
+        <div class="nav-links">
+            <span id="userWelcome" style="display:none;"></span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">🔐</div>
+                <h2>Welcome Back!</h2>
+                <p>Login to access your scholarships</p>
+            </div>
+
+    <form id="loginForm">
+            <div class="input-group">
+                <label>📧 Email Address</label>
+                <input type="email" id="loginEmail" placeholder="student@university.edu.ph">
+            </div>
+
+            <div class="input-group">
+                <label>🔒 Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="login-btn">Login →</button>
+        </form>
+
+            <div class="register-link">
+                <p>Don't have an account? <a href="register.html">Create one now</a></p>
+            </div>
+
+            <div id="loginMessage"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

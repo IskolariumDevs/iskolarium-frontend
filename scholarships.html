@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iskolarium - Scholarships</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body id="scholarships-page">
+    <nav>
+        <div class="logo">📚 ISKOLARHUB</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="scholarships.html">Scholarships</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="forum.html">Forum</a>
+            <a href="messages.html">Messages</a>
+            <a href="login.html" id="loginNavLink">Login</a>
+            <span id="userWelcome" style="display:none;"></span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="filter-card">
+            <h2>🎯 Smart Filter</h2>
+            <input type="number" id="filterGwa" placeholder="Your GWA">
+            <input type="text" id="filterProgram" placeholder="Your Program">
+            <input type="text" id="filterCity" placeholder="Your City">
+            <button onclick="searchScholarships()">🔍 Find Scholarships</button>
+        </div>
+        <div id="scholarshipsList"></div>
+    </div>
+
+    <script>
+        // Check if user is logged in when page loads
+        checkLoginStatusOnPage();
+        // Load scholarships on page load
+        searchScholarships();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
