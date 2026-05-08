@@ -1,69 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>IskolarHub - Your Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Iskolarium Dashboard — Track your scholarship applications and requirements.">
+  <title>Iskolarium – My Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body id="dashboard-page">
-    <nav>
-        <div class="logo">📚 ISKOLARIUM</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="forum.html">Forum</a>
-            <a href="messages.html">Messages</a>
-            <a href="login.html" id="loginNavLink">Login</a>
-            <span id="userWelcome" style="display:none;"></span>
-            <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="page-header">
-            <h1>📋 ISKOLARBOARD</h1>
-            <p>Track your scholarship applications and requirements</p>
-            <div id="scholarship-list" class="grid-container">
-                
-        </div>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🌅 ISKOLARIUM</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="scholarships.html">Scholarships</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="forum.html">Forum</a>
+      <a href="messages.html">Messages</a>
+      <a href="login.html" id="loginNavLink">Login</a>
+      <span id="userWelcome" style="display:none;"></span>
+      <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+    </div>
+  </nav>
 
-        <!-- Summary Stats -->
-        <div class="summary-stats">
-            <div class="summary-card">
-                <div class="summary-number" id="totalSaved">0</div>
-                <div class="summary-label">Scholarships Saved</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-number" id="totalProgress">0%</div>
-                <div class="summary-label">Average Progress</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-number" id="totalCompleted">0</div>
-                <div class="summary-label">Requirements Done</div>
-            </div>
-        </div>
+  <div class="container">
 
-        <!-- Tracked Scholarships List -->
-        <div id="trackedList"></div>
-
-        <!-- Empty State (shown when no scholarships saved) -->
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <div class="empty-icon">📭</div>
-            <h3>No Scholarships Saved Yet</h3>
-            <p>Browse scholarships and save the ones you're interested in.</p>
-            <a href="scholarships.html" class="btn-primary">Browse Scholarships →</a>
-        </div>
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1>📋 ISKOLARBOARD</h1>
+      <p>Track your scholarship applications and requirements</p>
     </div>
 
-    <script>
-        window.onload = function() {
-            checkLoginStatusOnPage();
-            loadDashboard();
-        }
-    </script>
-    <script src="script.js"></script>
+    <!-- USER PROFILE CARD -->
+    <div id="userProfileCard" style="background:#fff; padding:1.5rem; border-radius:12px; margin-bottom:2rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:none;">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); display:flex; align-items:center; justify-content:center; font-size:24px; color:#fff;">
+          🎓
+        </div>
+        <div style="flex:1;">
+          <h2 id="profileName" style="margin:0; font-size:1.5rem; color:#1a202c;">Loading...</h2>
+          <p id="profileDetails" style="margin:0.25rem 0 0 0; color:#718096; font-size:0.95rem;">Loading profile...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scholarship list (populated by JS) -->
+    <div id="scholarship-list" class="grid-container"></div>
+
+    <!-- SUMMARY STATS -->
+    <div class="summary-stats">
+      <div class="summary-card">
+        <div class="summary-number" id="totalSaved">0</div>
+        <div class="summary-label">Scholarships Saved</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-number" id="totalProgress">0%</div>
+        <div class="summary-label">Average Progress</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-number" id="totalCompleted">0</div>
+        <div class="summary-label">Requirements Done</div>
+      </div>
+      <div class="summary-card" style="display:flex;align-items:center;justify-content:center;">
+        <button id="searchBtn" class="btn-primary" onclick="window.location.href='scholarships.html'">
+                      Find New Scholarships
+      </div>
+
+      
+    </div>
+
+    <!-- TRACKED SCHOLARSHIPS -->
+     
+    <div  id="trackedList">\ </div>
+    
+    
+
+    <!-- EMPTY STATE -->
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <div class="empty-icon">📭</div>
+      <h3>No Scholarships Saved Yet</h3>
+      <p>Browse scholarships and save the ones you're interested in.</p>
+      <a href="scholarships.html" class="btn-primary">Browse Scholarships →</a>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    window.onload = function() {
+      checkLoginStatusOnPage();
+      loadDashboard();
+    }
+  </script>
 </body>
 </html>

@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>IskolarHub - ISKOMMUNITY Forum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Iskolarium ISKOMMUNITY — Connect with fellow scholars, ask questions, and share tips.">
+  <title>Iskolarium – ISKOMMUNITY Forum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body id="forum-page">
-    <nav>
-        <div class="logo">📚 ISKOLARIUM</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="forum.html" class="active">Forum</a>
-            <a href="messages.html">Messages</a>
-            <a href="login.html" id="loginNavLink">Login</a>
-            <span id="userWelcome" style="display:none;"></span>
-            <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="page-header">
-            <h1>💬 ISKOMMUNITY</h1>
-            <p>Connect with fellow scholars, ask questions, and share tips</p>
-        </div>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🌅 ISKOLARIUM</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="scholarships.html">Scholarships</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="forum.html" class="active">Forum</a>
+      <a href="messages.html">Messages</a>
+      <a href="login.html" id="loginNavLink">Login</a>
+      <span id="userWelcome" style="display:none;"></span>
+      <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+    </div>
+  </nav>
 
-        <!-- Create Post Form -->
-        <div class="create-post-card">
-            <h3>Create a Post</h3>
-            <textarea id="postContent" rows="3" placeholder="Share something with the community... (e.g., tips, questions, experiences)"></textarea>
-            <div class="post-options">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="anonymousPost"> Post anonymously
-                </label>
-                <button onclick="createPost()" class="btn-primary">📝 Post to Community</button>
-            </div>
-        </div>
+  <div class="container">
 
-        <!-- Filter Bar -->
-        <div class="forum-filter">
-            <button id="showAllBtn" class="filter-active" onclick="filterPosts('all')">All Posts</button>
-            <button id="showResolvedBtn" class="filter-btn" onclick="filterPosts('resolved')">Resolved</button>
-            <button id="showUnresolvedBtn" class="filter-btn" onclick="filterPosts('unresolved')">Unresolved</button>
-            <button id="showMyPostsBtn" class="filter-btn" onclick="filterPosts('myposts')">My Posts</button>
-        </div>
-
-        <!-- Posts List -->
-        <div id="forumPosts"></div>
-
-        <!-- Loading State -->
-        <div id="loadingPosts" class="loading-state">
-            <p>Loading community posts...</p>
-        </div>
+    <div class="page-header">
+      <h1>💬 ISKOMMUNITY</h1>
+      <p>Connect with fellow scholars, ask questions, and share tips</p>
     </div>
 
-    <script>
-        window.onload = function() {
-            checkLoginStatusOnPage();
-            loadForum();
-        }
-    </script>
-    <script src="script.js"></script>
+    <!-- CREATE POST -->
+    <div class="create-post-card">
+      <h3>Share with the Community</h3>
+      <textarea id="postContent" rows="3" placeholder="Share a tip, ask a question, or celebrate a win..."></textarea>
+      <div class="post-options">
+        <label class="checkbox-label">
+        </label>
+        <button onclick="createPost()" class="btn-primary">📝 Post to Community</button>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="forum-filter">
+      <button id="allPostsBtn" class="filter-btn active" onclick="loadForum('all')">All Posts</button>
+      <button id="resolvedBtn" class="filter-btn" onclick="loadForum('resolved')">✅ Resolved</button>
+      <button id="unresolvedBtn" class="filter-btn" onclick="loadForum('unresolved')">❓ Unresolved</button>
+      <button id="myPostsBtn" class="filter-btn" onclick="loadForum('my')">👤 My Posts</button>
+    </div>
+
+    <!-- POSTS — populated by script.js -->
+    <div id="forumPosts"></div>
+
+    <div id="loadingPosts" class="loading-state">
+      <p>Loading community posts...</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Route protection - require login for forum
+    if (!localStorage.getItem('userEmail')) {
+      alert('Please log in or register to access community features.');
+      window.location.href = 'login.html';
+    }
+    
+    window.onload = function() {
+      checkLoginStatusOnPage();
+      loadForum();
+    }
+  </script>
 </body>
 </html>

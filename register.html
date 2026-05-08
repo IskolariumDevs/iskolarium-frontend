@@ -1,44 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>IskolarHub - Register</title>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Iskolarium — Create your account and begin your scholarship journey.">
+  <title>Iskolarium – Begin Your Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body id="register-page">
-    <nav>
-        <div class="logo">📚 ISKOLARIUM</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="scholarships.html">Scholarships</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="forum.html">Forum</a>
-            <a href="login.html">Login</a>
-        </div>
-    </nav>
 
-    <div class="container">
-    <div class="card">
-        <h2>Create Account</h2>
-    
-        <form id="registrationForm">
-            <input type="text" id="regName" placeholder="Full Name" required>
-            <input type="email" id="regEmail" placeholder="Email" required>
-            <input type="password" id="regPassword" placeholder="Password" required>
-            <input type="number" id="regGwa" step="0.01" placeholder="GWA">
-            <input type="text" id="regUniversity" placeholder="University">
-            <input type="text" id="regCity" placeholder="Municipality" required>
-            <input type="text" id="regProgram" placeholder="Program">
-            <input type="text" id="regIncome" placeholder="Monthly Income" required>
-            
-
-        <button type="submit">Register</button>
-    </form>
-
-    <div id="registerMessage"></div>
-</div>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🌅 ISKOLARIUM</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="scholarships.html">Scholarships</a>
+      <a href="login.html">Login</a>
     </div>
-    <script src="script.js"></script>
+  </nav>
+
+  <div class="register-container">
+    <div class="register-card">
+
+      <div class="register-header">
+        <span class="register-icon">✨</span>
+        <h1>Begin Your Journey</h1>
+        <p>Every great achievement starts with a single step forward</p>
+      </div>
+
+      <form id="registrationForm" class="register-form">
+
+        <!-- Account Information -->
+        <div class="form-section">
+          <h3 class="section-title">Account Information</h3>
+          <div class="input-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" placeholder="your.email@example.com" required>
+          </div>
+          <div class="input-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Create a secure password" required>
+          </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-section">
+          <h3 class="section-title">Personal Information</h3>
+          <div class="name-row">
+            <div class="input-group">
+              <label for="regFirstName">First Name</label>
+              <input type="text" id="regFirstName" placeholder="Juan" required>
+            </div>
+            <div class="input-group">
+              <label for="regMiddleName">Middle Name</label>
+              <input type="text" id="regMiddleName" placeholder="Santos">
+            </div>
+            <div class="input-group">
+              <label for="regLastName">Last Name</label>
+              <input type="text" id="regLastName" placeholder="Dela Cruz" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Information -->
+        <div class="form-section">
+          <h3 class="section-title">Academic Information</h3>
+          <div class="input-group">
+            <label for="regUniversity">University</label>
+            <select id="regUniversity" required>
+              <option value="">Select your university</option>
+              <option value="Batangas State University" selected>Batangas State University</option>
+              <option value="University of Batangas">University of Batangas</option>
+              <option value="Lyceum of the Philippines University - Batangas">Lyceum of the Philippines University - Batangas</option>
+              <option value="De La Salle Lipa">De La Salle Lipa</option>
+              <option value="Polytechnic University of the Philippines - Batangas">Polytechnic University of the Philippines - Batangas</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="regProgram">Program</label>
+            <select id="regProgram" required>
+              <option value="">Select your program</option>
+              <option value="BS Computer Engineering">BS Computer Engineering</option>
+              <option value="BS Information Technology">BS Information Technology</option>
+              <option value="BS Computer Science">BS Computer Science</option>
+              <option value="BS Electrical Engineering">BS Electrical Engineering</option>
+              <option value="BS Mechanical Engineering">BS Mechanical Engineering</option>
+              <option value="BS Civil Engineering">BS Civil Engineering</option>
+              <option value="BS Industrial Engineering">BS Industrial Engineering</option>
+              <option value="BS Electronics Engineering">BS Electronics Engineering</option>
+              <option value="BS Accountancy">BS Accountancy</option>
+              <option value="BS Business Administration">BS Business Administration</option>
+              <option value="BS Psychology">BS Psychology</option>
+              <option value="BS Nursing">BS Nursing</option>
+              <option value="BS Education">BS Education</option>
+              <option value="BS Architecture">BS Architecture</option>
+            </select>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="regGwa">GWA (General Weighted Average)</label>
+              <input type="number" id="regGwa" step="0.01" min="1.0" max="5.0" placeholder="e.g., 1.75" required>
+            </div>
+            <div class="input-group">
+              <label for="regStrand">Senior High Strand (if applicable)</label>
+              <select id="regStrand">
+                <option value="">Not applicable / Already in college</option>
+                <option value="STEM">STEM – Science, Technology, Engineering &amp; Math</option>
+                <option value="ABM">ABM – Accountancy, Business &amp; Management</option>
+                <option value="HUMSS">HUMSS – Humanities &amp; Social Sciences</option>
+                <option value="GAS">GAS – General Academic Strand</option>
+                <option value="TVL">TVL – Technical-Vocational-Livelihood</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location & Financial -->
+        <div class="form-section">
+          <h3 class="section-title">Location &amp; Financial Information</h3>
+          <div class="input-group">
+            <label for="regProvince">Province</label>
+            <select id="regProvince" required>
+              <option value="">Select your province</option>
+              <option value="Batangas" selected>Batangas</option>
+              <option value="Cavite">Cavite</option>
+              <option value="Laguna">Laguna</option>
+              <option value="Quezon">Quezon</option>
+              <option value="Rizal">Rizal</option>
+              <option value="Metro Manila">Metro Manila</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="regCity">City / Municipality</label>
+              <select id="regCity" required>
+              <option value="" disabled selected>Select your city</option>
+              <option value="Batangas City">Batangas City</option>
+              <option value="Lipa City">Lipa City</option>
+              <option value="Tanauan City">Tanauan City</option>
+              <option value="Santo Tomas">Santo Tomas</option>
+              <option value="Calaca">Calaca</option>
+              <option value="Lemery">Lemery</option>
+              <option value="Taal">Taal</option>
+              <option value="Balayan">Balayan</option>
+              <option value="Nasugbu">Nasugbu</option>
+              <option value="San Juan">San Juan</option>
+              <option value="Rosario">Rosario</option>
+              <option value="Taysan">Taysan</option>
+              <option value="Lobo">Lobo</option>
+              <option value="Mabini">Mabini</option>
+              <option value="Bauan">Bauan</option>
+              <option value="San Pascual">San Pascual</option>
+              <option value="Ibaan">Ibaan</option>
+              <option value="Malvar">Malvar</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="regIncome">Annual Family Income</label>
+            <select id="regIncome" required>
+              <option value="">Select income bracket</option>
+              <option value="Below ₱100,000">Below ₱100,000</option>
+              <option value="₱100,000 - ₱250,000">₱100,000 – ₱250,000</option>
+              <option value="₱250,001 - ₱400,000">₱250,001 – ₱400,000</option>
+              <option value="₱400,001 - ₱600,000">₱400,001 – ₱600,000</option>
+              <option value="₱600,001 - ₱1,000,000">₱600,001 – ₱1,000,000</option>
+              <option value="Above ₱1,000,000">Above ₱1,000,000</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="register-btn">
+          <span>Create My Account</span>
+          <span class="btn-icon">→</span>
+        </button>
+
+        <div class="login-link">
+          Already have an account? <a href="login.html">Sign in here</a>
+        </div>
+
+      </form>
+
+      <div id="registerMessage" class="message-box"></div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,43 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Iskolarium - Scholarships</title>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Iskolarium — Browse and filter scholarships you qualify for.">
+  <title>Iskolarium – Scholarships</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body id="scholarships-page">
-    <nav>
-        <div class="logo">📚 ISKOLARHUB</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="scholarships.html">Scholarships</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="forum.html">Forum</a>
-            <a href="messages.html">Messages</a>
-            <a href="login.html" id="loginNavLink">Login</a>
-            <span id="userWelcome" style="display:none;"></span>
-            <button id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="filter-card">
-            <h2>🎯 Smart Filter</h2>
-            <input type="number" id="filterGwa" placeholder="Your GWA">
-            <input type="text" id="filterProgram" placeholder="Your Program">
-            <input type="text" id="filterCity" placeholder="Your City">
-            <button onclick="searchScholarships()">🔍 Find Scholarships</button>
-        </div>
-        <div id="scholarshipsList"></div>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🌅 ISKOLARIUM</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="scholarships.html" class="active">Scholarships</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="forum.html">Forum</a>
+      <a href="messages.html">Messages</a>
+      <a href="login.html" id="loginNavLink">Login</a>
+      <span id="userWelcome" style="display:none;"></span>
+      <button id="logoutBtn" onclick="logout()" style="display:none;" class="nav-btn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1>🎓 Scholarships</h1>
+      <p>Filter and find scholarships that match your profile</p>
     </div>
 
-    <script>
-        // Check if user is logged in when page loads
-        checkLoginStatusOnPage();
-        // Load scholarships on page load
-        searchScholarships();
-    </script>
-    <script src="script.js"></script>
+    <!-- FILTER CARD -->
+    <div class="filter-card">
+      <h2>🎯 Smart Filter</h2>
+      <div id="welcomeMessage" style="display:none; padding:1rem; background:#e8f5e9; border-radius:8px; margin-bottom:1rem;">
+        <p style="margin:0; color:#2e7d32; font-weight:500;">👋 Welcome back! Finding your personalized matches...</p>
+      </div>
+      <div id="guestFilters">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <input type="number" id="filterGwa" placeholder="Your GWA (e.g. 1.75)" step="0.01" min="1.0" max="5.0">
+          <select id="filterProgram">
+            <option value="">Select Program</option>
+            <option value="BS Computer Engineering">BS Computer Engineering</option>
+            <option value="BS Information Technology">BS Information Technology</option>
+            <option value="BS Computer Science">BS Computer Science</option>
+            <option value="BS Electrical Engineering">BS Electrical Engineering</option>
+            <option value="BS Mechanical Engineering">BS Mechanical Engineering</option>
+            <option value="BS Civil Engineering">BS Civil Engineering</option>
+            <option value="BS Industrial Engineering">BS Industrial Engineering</option>
+            <option value="BS Electronics Engineering">BS Electronics Engineering</option>
+            <option value="BS Accountancy">BS Accountancy</option>
+            <option value="BS Business Administration">BS Business Administration</option>
+            <option value="BS Psychology">BS Psychology</option>
+            <option value="BS Nursing">BS Nursing</option>
+            <option value="BS Education">BS Education</option>
+            <option value="BS Architecture">BS Architecture</option>
+          </select>
+          <select id="filterUniversity">
+            <option value="">Select University</option>
+            <option value="Batangas State University">Batangas State University</option>
+            <option value="University of Batangas">University of Batangas</option>
+            <option value="Lyceum of the Philippines University - Batangas">Lyceum of the Philippines University - Batangas</option>
+            <option value="De La Salle Lipa">De La Salle Lipa</option>
+            <option value="Polytechnic University of the Philippines - Batangas">Polytechnic University of the Philippines - Batangas</option>
+          </select>
+          <select id="filterProvince">
+            <option value="">Select Province</option>
+            <option value="Batangas">Batangas</option>
+            <option value="Cavite">Cavite</option>
+            <option value="Laguna">Laguna</option>
+            <option value="Quezon">Quezon</option>
+            <option value="Rizal">Rizal</option>
+            <option value="Metro Manila">Metro Manila</option>
+          </select>
+          <select id="filterCity">
+            <option value="">Select City/Municipality</option>
+            <option value="Batangas City">Batangas City</option>
+            <option value="Lipa City">Lipa City</option>
+            <option value="Tanauan City">Tanauan City</option>
+            <option value="Santo Tomas">Santo Tomas</option>
+            <option value="Calaca">Calaca</option>
+            <option value="Lemery">Lemery</option>
+            <option value="Taal">Taal</option>
+            <option value="Balayan">Balayan</option>
+            <option value="Nasugbu">Nasugbu</option>
+            <option value="San Juan">San Juan</option>
+            <option value="Rosario">Rosario</option>
+            <option value="Taysan">Taysan</option>
+            <option value="Lobo">Lobo</option>
+            <option value="Mabini">Mabini</option>
+            <option value="Bauan">Bauan</option>
+            <option value="San Pascual">San Pascual</option>
+            <option value="Ibaan">Ibaan</option>
+            <option value="Malvar">Malvar</option>
+          </select>
+          <select id="filterIncome">
+            <option value="">Select Income Bracket</option>
+            <option value="Below ₱100,000">Below ₱100,000</option>
+            <option value="₱100,000 - ₱250,000">₱100,000 – ₱250,000</option>
+            <option value="₱250,001 - ₱400,000">₱250,001 – ₱400,000</option>
+            <option value="₱400,001 - ₱600,000">₱400,001 – ₱600,000</option>
+            <option value="₱600,001 - ₱1,000,000">₱600,001 – ₱1,000,000</option>
+            <option value="Above ₱1,000,000">Above ₱1,000,000</option>
+          </select>
+          <select id="filterStrand">
+            <option value="">Select Strand (if applicable)</option>
+            <option value="STEM">STEM</option>
+            <option value="ABM">ABM</option>
+            <option value="HUMSS">HUMSS</option>
+            <option value="GAS">GAS</option>
+            <option value="TVL">TVL</option>
+          </select>
+        </div>
+        <button onclick="searchScholarships()" style="margin-top:1rem;">🔍 Find Scholarships</button>
+      </div>
+    </div>
+
+    <!-- RESULTS — populated by script.js -->
+    <div id="scholarshipsList"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    checkLoginStatusOnPage();
+    searchScholarships();
+  </script>
 </body>
 </html>
